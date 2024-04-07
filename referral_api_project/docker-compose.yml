@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=refferal
+      - DB_NAME=refferal_db
+      - DB_USER=referral_user
+      - DB_PASSWORD=Madhu@555
+      - DB_HOST=db
+      - DB_PORT=5432
+
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=refferal
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Madhu@555
